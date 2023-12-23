@@ -1,8 +1,17 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import Headroom from 'react-headroom';
 import { Link } from 'react-router-dom';
+import { Bars3Icon } from "@heroicons/react/24/outline";
+import NavToggle from './NavToggle';
+
 const Header = () => {
   const headerRef = useRef(null);
+  const [navOpen, setNavOpen] = useState(false);
+
+  const handleNavToggle = () => {
+    setNavOpen(true);
+  }
+
   return (
     <section>
       <Headroom
@@ -10,11 +19,11 @@ const Header = () => {
       onUnfix={() => {headerRef.current.style.opacity = '1';}}>
         <header
         ref={headerRef}
-        className="flex justify-between bg-blue-500 text-white p-4 px-20">
+        className="flex justify-between bg-blue-500 text-white p-4 sm:px-20">
           <Link to="/">
-            <h2 className="text-2xl font-bold">Reinanda Faris</h2>
+            <h2 className="md:text-2xl text-lg font-bold">Reinanda Faris</h2>
           </Link>
-          <div className='flex gap-3'>
+          <div className='md:flex md:gap-3 hidden'>
             <Link to="/work" className='hover:underline hover:text-white'>
               <p>Work</p>
             </Link>
@@ -34,8 +43,18 @@ const Header = () => {
               <p>Contact</p>
             </Link>
           </div>
+            <Bars3Icon 
+              className='w-6 h-6 md:hidden'
+              onClick={handleNavToggle}
+            />
         </header>
       </Headroom>
+
+      {navOpen && (
+        <NavToggle 
+          setNavOpen={setNavOpen}
+        />
+      )}
     </section>
   );
 };
