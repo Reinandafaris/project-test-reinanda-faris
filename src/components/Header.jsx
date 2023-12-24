@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import Headroom from 'react-headroom';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import NavToggle from './NavToggle';
 
@@ -10,6 +10,23 @@ const Header = () => {
 
   const handleNavToggle = () => {
     setNavOpen(true);
+  }
+
+  let {pathname} = useLocation();
+  let subpage = pathname.split('/')?.[1]
+  // console.log(subpage);
+
+  function Linkness (type = null) {
+    if (subpage === '') {
+      subpage = 'home'
+    }
+
+    let classes = 'hover:underline hover:text-white';
+
+    if (type === subpage) {
+      classes += ' bg-green-500 px-3 rounded-md';
+    }
+    return classes
   }
 
   return (
@@ -24,22 +41,22 @@ const Header = () => {
             <h2 className="md:text-2xl text-lg font-bold">Reinanda Faris</h2>
           </Link>
           <div className='md:flex md:gap-3 hidden'>
-            <Link to="/work" className='hover:underline hover:text-white'>
+            <Link to="/work" className={Linkness('work')}>
               <p>Work</p>
             </Link>
-            <Link to="/about" className='hover:underline hover:text-white'>
+            <Link to="/about" className={Linkness('about')}>
               <p>About</p>
             </Link>
-            <Link to="/services" className='hover:underline hover:text-white'>
+            <Link to="/services" className={Linkness('services')}>
               <p>Services</p>
             </Link>
-            <Link to="/" className='hover:underline hover:text-white'>
+            <Link to="/" className={Linkness('home')}>
               <p>Ideas</p>
             </Link>
-            <Link to="/careers" className='hover:underline hover:text-white'>
+            <Link to="/careers" className={Linkness('careers')}>
               <p>Careers</p>
             </Link>
-            <Link to="/contact" className='hover:underline hover:text-white'>
+            <Link to="/contact" className={Linkness('contact')}>
               <p>Contact</p>
             </Link>
           </div>

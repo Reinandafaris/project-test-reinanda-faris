@@ -1,6 +1,6 @@
 const Work = () => {
   return (
-    <div className="h-[81vh] grid place-content-center">Work Page</div>
+    <div className="h-[60vh] grid place-content-center">Work Page</div>
   )
 }
 

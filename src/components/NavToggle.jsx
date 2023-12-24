@@ -1,5 +1,6 @@
+import PropTypes from "prop-types";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { Link } from "react-router-dom";
+import Sidebar from "./Sidebar";
 
 const NavToggle = ({ setNavOpen }) => {
   const handleCloseNav = () => {
@@ -15,28 +16,50 @@ const NavToggle = ({ setNavOpen }) => {
             onClick={handleCloseNav}
           />
         </div>
-        <div className='p-5 space-y-6'>
-          <Link to="/work" className='hover:underline'>
-            <p className="mt-4 mb-4">Work</p>
-          </Link>
-          <Link to="/about" className='hover:underline'>
-            <p className="mt-4 mb-4">About</p>
-          </Link>
-          <Link to="/services" className='hover:underline'>
-            <p className="mt-4 mb-4">Services</p>
-          </Link>
-          <Link to="/" className='hover:underline'>
-            <p className="mt-4 mb-4">Ideas</p>
-          </Link>
-          <Link to="/careers" className='hover:underline'>
-            <p className="mt-4 mb-4">Careers</p>
-          </Link>
-          <Link to="/contact" className='hover:underline'>
-            <p className="mt-4 mb-4">Contact</p>
-          </Link>
+        <div className='p-2'>
+          <Sidebar 
+            path="/work"
+            href="/work"
+            name="Work"
+            handleCloseNav={handleCloseNav}
+          />
+          <Sidebar 
+            path="/about"
+            href="/about"
+            name="About"
+            handleCloseNav={handleCloseNav}
+          />
+          <Sidebar 
+            path="/services"
+            href="/services"
+            name="Services"
+            handleCloseNav={handleCloseNav}
+          />
+          <Sidebar 
+            path="/"
+            href="/"
+            name="Ideas"
+            handleCloseNav={handleCloseNav}
+          />
+          <Sidebar 
+            path="/careers"
+            href="/careers"
+            name="Careers"
+            handleCloseNav={handleCloseNav}
+          />
+          <Sidebar 
+            path="/contact"
+            href="/contact"
+            name="Contact"
+            handleCloseNav={handleCloseNav}
+          />
         </div>
     </div>
   )
 }
+
+NavToggle.propTypes = {
+  setNavOpen: PropTypes.func.isRequired,
+};
 
 export default NavToggle
